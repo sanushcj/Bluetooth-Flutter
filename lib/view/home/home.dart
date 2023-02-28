@@ -7,25 +7,21 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   BluetoothDeviceController controller = Get.put(BluetoothDeviceController());
 
-  Rx<Future<List<BluetoothDevice>>> paireddevices =
-      [].obs as Rx<Future<List<BluetoothDevice>>>;
-  paireddevicesF() async {
-    paireddevices.value = (await controller.blueInstance.connectedDevices)
-        as Future<List<BluetoothDevice>>;
-  }
+
 
   @override
   Widget build(BuildContext context) {
-    paireddevicesF();
+    // paireddevicesF();
     return Scaffold(
       backgroundColor: Colors.purple[100],
       appBar: AppBar(
         actions: [
-          ElevatedButton(
+          IconButton(icon: const Icon(Icons.qr_code),onPressed: () => '',),
+          IconButton(
+            icon: const Icon(Icons.refresh),
             onPressed: () {
               controller.scanDevice();
             },
-            child: const Icon(Icons.refresh),
           ),
         ],
         title: const Text('Hello Bluetooth'),

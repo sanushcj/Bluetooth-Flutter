@@ -49,4 +49,10 @@ class BluetoothDeviceController extends GetxController {
    await device.disconnect();
    deviceConnected.value = false;
   }
+
+qrCodeScanner()async {
+  
+}
+
+
 }
