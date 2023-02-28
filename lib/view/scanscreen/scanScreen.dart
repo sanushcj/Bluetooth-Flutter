@@ -7,11 +7,12 @@ import 'package:get/get.dart';
 class ScanDevicesScreen extends StatelessWidget {
    ScanDevicesScreen({super.key});
 
-BluetoothDeviceController controller = Get.put(BluetoothDeviceController());
   
 
   @override
   Widget build(BuildContext context) {
+    BluetoothDeviceController controller = Get.put(BluetoothDeviceController());
+
     return const Placeholder();
   }
 }

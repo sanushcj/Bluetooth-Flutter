@@ -12,16 +12,17 @@ class HomeScreen extends StatelessWidget {
     return  Scaffold(
       backgroundColor: Colors.purple[100],
       appBar: AppBar(title: const Text('Hello Bluetooth'),backgroundColor: Colors.purple[200],),
-      body: StreamBuilder<BluetoothState>(
-          stream: FlutterBluePlus.instance.state,
-          initialData: BluetoothState.unknown,
-          builder: (c, snapshot) {
-            final state = snapshot.data;
-            if (state == BluetoothState.on) {
-              return  ScanDevicesScreen();
-            }
-            return BluetoothOffScreen(state: state,);
-          }),
+      // body: StreamBuilder<BluetoothState>(
+      //     stream: FlutterBluePlus.instance.state,
+      //     initialData: BluetoothState.unknown,
+      //     builder: (c, snapshot) {
+      //       final state = snapshot.data;
+      //       if (state == BluetoothState.off) {
+      //         return  ScanDevicesScreen();
+      //       }
+      //       return BluetoothOffScreen(state: state,);
+      //     }),
+      body: ScanDevicesScreen(),
     );
   }
 }

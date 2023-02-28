@@ -26,10 +26,11 @@ void blutoothInit() {
   }
 
     scanDevice() async {
+      
     // ignore: unrelated_type_equality_checks
-    if (_isScanning == true) {
+    if (_isScanning == false) {
       scanResultList.clear();
-      blueInstance.startScan(timeout: const Duration(seconds: 4));
+  await    blueInstance.startScan(timeout: const Duration(seconds: 4));
       blueInstance.scanResults.listen((results) {
         scanResultList = results;
         log('printing results within the function');
