@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'homepage_controller.dart';
 
 class BlePageController extends GetxController {
@@ -13,7 +13,7 @@ class BlePageController extends GetxController {
   bool connection = false;
 
   final HomePageController c = Get.find();
-
+  var Connectstatus = Permission.bluetoothConnect.status;
   @override
   void onInit() {
     super.onInit();
@@ -41,7 +41,9 @@ class BlePageController extends GetxController {
 
   connectDevice(BluetoothDevice device) async {
     try {
-     device.connect(autoConnect: true);
+      if (await Connectstatus.isGranted) {
+        await device.connect();
+      }
     } catch (e) {
       Get.snackbar('error', '$e');
       if (kDebugMode) {
