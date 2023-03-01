@@ -7,7 +7,9 @@ import '../controllers/ble_list_controller.dart';
 import 'ble_info.dart';
 
 class BlePage extends StatelessWidget {
-  BlePage({super.key,});
+  BlePage({
+    super.key,
+  });
 
   final BlePageController controller = Get.put(BlePageController());
 
@@ -15,22 +17,20 @@ class BlePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple[100],
-      appBar: AppBar(backgroundColor: Colors.purple[200],
+      appBar: AppBar(
+        backgroundColor: Colors.purple[200],
         title: const Text("Bluetooth Devices"),
-        actions: [IconButton(
+        actions: [
+          IconButton(
             onPressed: () {
               controller.refreshDevices();
             },
-            icon: const Icon(
-             Icons.refresh
-            ),
-          ), 
-          
-          ],
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
       ),
       body: Column(
         children: [
-          
           Expanded(
             child: GetBuilder<BlePageController>(
               builder: (c) => ListView.separated(
@@ -38,11 +38,16 @@ class BlePage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   ScanResult results = controller.result[index];
                   final String deviceID = results.device.id.id;
-                 
+
                   return ListTile(
-                    onTap: () {
+                    onTap: () async {
                       Get.to(() => BleInfoPage(result: results));
-                    },leading: const CircleAvatar(child: Icon(Icons.bluetooth,color: Colors.white,)),
+                    },
+                    leading: const CircleAvatar(
+                        child: Icon(
+                      Icons.bluetooth,
+                      color: Colors.white,
+                    )),
                     title: Text(
                       results.device.name.isNotEmpty
                           ? results.device.name
@@ -51,12 +56,22 @@ class BlePage extends StatelessWidget {
                               : 'Unknown',
                     ),
                     subtitle: Text(deviceID),
-                    trailing: Container(
-                      alignment: Alignment.center,
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),border: Border.all(color: Colors.purple)),
-                      child: const Text('C',style: TextStyle(fontSize: 30,color: Colors.white),),
+                    trailing: GestureDetector(
+                      onTap: () => controller.connection == false
+                          ? controller.connectDevice(results.device)
+                          : controller.disConnectDevice(results.device),
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.purple)),
+                        child: const Text(
+                          'C',
+                          style: TextStyle(fontSize: 30, color: Colors.white),
+                        ),
+                      ),
                     ),
                   );
                 },
