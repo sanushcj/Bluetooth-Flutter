@@ -1,4 +1,4 @@
-# bluetooth_task
+# ble_getx
 
 A new Flutter project.
 

@@ -1,4 +1,4 @@
-package com.example.bluetooth_task
+package com.example.ble_getx
 
 import io.flutter.embedding.android.FlutterActivity
 
