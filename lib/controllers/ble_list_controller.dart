@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+// import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:get/get.dart';
@@ -13,6 +13,7 @@ class BlePageController extends GetxController {
   bool connection = false;
 
   final HomePageController c = Get.find();
+  // ignore: non_constant_identifier_names
   var Connectstatus = Permission.bluetoothConnect.status;
   @override
   void onInit() {
@@ -40,10 +41,10 @@ class BlePageController extends GetxController {
   }
 
   connectDevice(BluetoothDevice device) async {
+    flutterBlue.stopScan();
+    // BluetoothDeviceState.disconnected;
     try {
-      if (await Connectstatus.isGranted) {
-        await device.connect();
-      }
+     await device.connect();
     } catch (e) {
       Get.snackbar('error', '$e');
       if (kDebugMode) {

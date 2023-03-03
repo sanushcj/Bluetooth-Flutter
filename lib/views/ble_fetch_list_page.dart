@@ -57,9 +57,9 @@ class BlePage extends StatelessWidget {
                     ),
                     subtitle: Text(deviceID),
                     trailing: GestureDetector(
-                      onTap: () => controller.connection == false
-                          ? controller.connectDevice(results.device)
-                          : controller.disConnectDevice(results.device),
+                      onTap: () => 
+                           controller.connectDevice(results.device),
+                          // : controller.disConnectDevice(results.device),
                       child: Container(
                         alignment: Alignment.center,
                         height: 50,

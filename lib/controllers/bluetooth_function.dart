@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,9 @@ class Communicate extends GetxController {
     
     BluetoothConnection connection = await BluetoothConnection.toAddress("E4:5F:01:31:77:71");
 
-    print('Connected to the device');
+    if (kDebugMode) {
+      print('Connected to the device');
+    }
     connection.output.add(ascii.encode("start\r\n"));
     connection.input?.listen((Uint8List data){
      
