@@ -9,7 +9,6 @@ class MyHomePage extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final HomePageController _controller = Get.put(HomePageController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () => _controller.searchingBluetoothDevices(),
+          // onPressed: () => searchingBluetoothDevices(),
           child: const Text("Search"),
         ),
       ),
